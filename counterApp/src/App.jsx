@@ -13,7 +13,13 @@ function App() {
       if(counter > 20){ // counter value not exceed 20
         counter = 20;
       }else{
-        setCounter(counter++);
+        // setCounter(counter++);
+        // setCounter(counter++);
+        // setCounter(counter++);  
+
+         setCounter(counter+1);
+        // setCounter(counter+1);
+        // setCounter(counter+1);
       }
     
   } 
