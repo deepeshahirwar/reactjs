@@ -8,15 +8,46 @@ function Square({value, onSquareClick}) {
       {value}
     </button>
   );
-}
+} 
+// for claculating winnner 
 
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];  
+ 
+  for(let i=0; i<lines.length; i++){
+    const [a,b,c] =  lines[i]; 
+    
+    if(squares[a] && squares[a] === squares[b] && squares[a] === squares[c]){
+      return squares[a]; 
+      
+    } 
+   
+  }  
+
+  return null;
+}
+ 
+function Board({xIsNext , squares, onPlay}){
+  
+}
 function App() {
   const [xIsNext, setXIsNext] = useState(true);
   const [squares , setSquares] = useState(
-    Array(9).fill(null)); 
+    Array(9).fill(null));  
+     
+   
 
     function handleClick(i){
-      if(squares[i]){// it means user click again filled box
+      if(squares[i] || calculateWinner(squares)){// it means user click again filled box
         return;
       } 
     
@@ -26,16 +57,26 @@ function App() {
       }else{
         nextSquares[i] = 'O';
       } 
-
+  
       setSquares(nextSquares);// update current squares
       setXIsNext(!xIsNext);// update current turn
-     
-    }
+      
+    } 
 
+    const winner = calculateWinner(squares);
+    let status; 
+    if(winner){
+      status = 'Winner: '+ winner;
+    } 
+    else{
+      status ='Next Player: ' + (xIsNext ? 'X' :'O');
+    }
+ 
   return (
     <>  
     
-<div className="game">
+<div className="game"> 
+   <div className='status'>{status}</div>
     <div className='board-row'>  
      <Square value={squares[0]} 
      onSquareClick={()=> handleClick(0)}/>
@@ -69,4 +110,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
