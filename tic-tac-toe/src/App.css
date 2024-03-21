@@ -1,0 +1,22 @@
+   
+.game{
+  margin:5rem 35% 0 35%;
+  width: 13rem; 
+  height: 13rem; 
+  border: 1px solid #3b3636; 
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+   flex-direction:  column;
+}
+   .board-row {
+     display: flex;
+     align-items: center;
+     justify-content: center; 
+   }
+
+   .square {
+     width: 4rem;
+     height: 4rem;
+     border: 1px solid black;
+   }
